@@ -30,8 +30,12 @@ const manageRecipes = async () => {
       console.log(recipe.title)
     })
 
-    await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100}, console.log('Time change'))
-    await Recipe.deleteOne({title :'Carrot Cake'}, console.log('Recipe deleted'))
+    const update = await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100})
+    if(update) console.log('Update successful')
+
+    const deleted = await Recipe.deleteOne({title :'Carrot Cake'})
+    if(deleted) console.log('Delete successful')
+    
     mongoose.disconnect();
 
 
